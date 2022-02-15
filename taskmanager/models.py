@@ -4,13 +4,13 @@ from taskmanager import db
 class Category(db.Model):
     # scherma for the Category model
     id = db.Column(db.Integer, primary_key=True)
-    catagory_name = db.Column(db.String(25), unique=True, nullable=False)
+    category_name = db.Column(db.String(25), unique=True, nullable=False)
     tasks = db.relationship("Task", backref="category", cascade="all, delete", lazy=True)
 
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
-        return self.catagory_name
+        return self.category_name
 
 
 class Task(db.Model):
