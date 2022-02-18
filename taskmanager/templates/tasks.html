@@ -15,15 +15,19 @@
     {% for task in tasks|sort(attribute="due_date") %}
     <li>
         <div class="collapsible-header white-text light-blue darken-4">
-            <i class="fas fa-caret-down"></i>
-            <strong>{{ task.task_name }}</strong> : {{ task.due_date.strftime("%d %B, %Y") }}
-            {% if task.is_urgent == True %}
+            <div>
+                <i class="fas fa-caret-down"></i>
+                <strong>{{ task.task_name }}</strong> : {{ task.due_date.strftime("%d %B, %Y") }}
+                {% if task.is_urgent == True %}
                 <i class="fas fa-exclamation-circle light-blue-text text-lighten-2"></i>
-            {% endif %}
+                {% endif %}
+            </div>
+
         </div>
         <div class="collapsible-body">
             <strong>{{ task.category }}</strong>
             <p>{{ task.task_description }}</p>
+            <a href="{{ url_for('edit_task', task_id=task.id) }}" class="btn green accent-4">Edit</a>
         </div>
     </li>
     {% endfor %}
