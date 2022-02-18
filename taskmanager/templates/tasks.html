@@ -28,8 +28,23 @@
             <strong>{{ task.category }}</strong>
             <p>{{ task.task_description }}</p>
             <a href="{{ url_for('edit_task', task_id=task.id) }}" class="btn green accent-4">Edit</a>
+            <!-- <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn red">Delete</a> -->
+            <!-- Modal Trigger Delete Category -->
+            <button data-target="modal-{{ task.id }}" class="btn modal-trigger">Delete</button>
         </div>
     </li>
+    <!-- Modal Delete Task -->
+    <div id="modal-{{ task.id }}" class="modal">
+        <div class="modal-content">
+            <h4>Delete task</h4>
+            <p>Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="{{ url_for('delete_task', task_id=task.id) }}"
+                class="modal-close waves-effect waves-green btn-flat">Yes</a>
+            <a href="#" class="modal-close waves-effect waves-green btn-flat">No</a>
+        </div>
+    </div>
     {% endfor %}
 </ul>
 
